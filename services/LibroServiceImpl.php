@@ -1,12 +1,12 @@
 <?php
 
 require_once __DIR__ . "/LibroServiceInterface.php";
-require_once __DIR__ . "/../repositories/LibroRepository.php";
+require_once __DIR__ . "/../repositories/LibroRepositoryInterface.php";
 
 class LibroServiceImpl implements LibroServiceInterface {
-    private LibroRepository $libroRepository;
+    private LibroRepositoryInterface $libroRepository;
 
-    public function __construct(LibroRepository $libroRepository) {
+    public function __construct(LibroRepositoryInterface $libroRepository) {
         $this->libroRepository = $libroRepository;
     }
 
