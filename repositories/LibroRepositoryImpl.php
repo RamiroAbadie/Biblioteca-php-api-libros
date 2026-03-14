@@ -25,6 +25,26 @@ class LibroRepositoryImpl implements LibroRepositoryInterface {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function findBaseDataById(int $idLibro): ?array {
+        $sql = "
+            SELECT 
+                l.id_libro,
+                l.titulo,
+                l.paginas,
+                u.referencia AS ubicacion
+            FROM libro l
+            INNER JOIN ubicacion u ON l.id_ubicacion = u.id_ubicacion
+            WHERE l.id_libro = ?
+        ";
+
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([$idLibro]);
+
+        $fila = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $fila ?: null;
+    }
+
     public function findAutoresByLibroId(int $idLibro): array {
         $sql = "
             SELECT a.nombre

@@ -14,6 +14,29 @@ class LibroController {
         $method = $_SERVER["REQUEST_METHOD"];
 
         if ($method === "GET") {
+            if (isset($_GET["id"])) {
+                $idLibro = (int) $_GET["id"];
+
+                if ($idLibro <= 0) {
+                    jsonResponse([
+                        "error" => "El id debe ser un número mayor a 0"
+                    ], 400);
+                    return;
+                }
+
+                $libro = $this->libroService->getLibroById($idLibro);
+
+                if ($libro === null) {
+                    jsonResponse([
+                        "error" => "Libro no encontrado"
+                    ], 404);
+                    return;
+                }
+
+                jsonResponse($libro, 200);
+                return;
+            }
+
             $libros = $this->libroService->getAllLibros();
             jsonResponse($libros, 200);
             return;

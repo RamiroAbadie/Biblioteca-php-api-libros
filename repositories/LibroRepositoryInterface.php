@@ -4,6 +4,8 @@ interface LibroRepositoryInterface
 {
     public function findAllBaseData(): array;
 
+    public function findBaseDataById(int $idLibro): ?array;
+
     public function findAutoresByLibroId(int $idLibro): array;
 
     public function findGenerosByLibroId(int $idLibro): array;

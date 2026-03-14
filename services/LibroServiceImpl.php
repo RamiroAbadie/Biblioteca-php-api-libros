@@ -35,4 +35,26 @@ class LibroServiceImpl implements LibroServiceInterface {
 
         return $libros;
     }
+
+    public function getLibroById(int $idLibro): ?array {
+        $fila = $this->libroRepository->findBaseDataById($idLibro);
+
+        if ($fila === null) {
+            return null;
+        }
+
+        $autores = $this->libroRepository->findAutoresByLibroId($idLibro);
+        $generos = $this->libroRepository->findGenerosByLibroId($idLibro);
+        $editoriales = $this->libroRepository->findEditorialesByLibroId($idLibro);
+
+        return [
+            "idLibro" => (int) $fila["id_libro"],
+            "titulo" => $fila["titulo"],
+            "paginas" => (int) $fila["paginas"],
+            "ubicacion" => $fila["ubicacion"],
+            "autores" => $autores,
+            "generos" => $generos,
+            "editoriales" => $editoriales
+        ];
+    }
 }
