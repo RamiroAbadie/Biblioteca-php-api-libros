@@ -1,8 +1,9 @@
 <?php
 
+require_once __DIR__ . "/LibroServiceInterface.php";
 require_once __DIR__ . "/../repositories/LibroRepository.php";
 
-class LibroService {
+class LibroServiceImpl implements LibroServiceInterface {
     private LibroRepository $libroRepository;
 
     public function __construct(LibroRepository $libroRepository) {

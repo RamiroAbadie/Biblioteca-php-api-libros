@@ -1,25 +1,22 @@
 <?php
 
 require_once __DIR__ . "/../config/database.php";
-require_once __DIR__ . "/../utils/responses.php";
-require_once __DIR__ . "/../repositories/LibroRepository.php";
-require_once __DIR__ . "/../services/LibroService.php";
+require_once __DIR__ . "/../utils/response.php";
+
+require_once __DIR__ . "/../repositories/LibroRepositoryInterface.php";
+require_once __DIR__ . "/../repositories/LibroRepositoryImpl.php";
+
+require_once __DIR__ . "/../services/LibroServiceInterface.php";
+require_once __DIR__ . "/../services/LibroServiceImpl.php";
+
+require_once __DIR__ . "/../controllers/LibroController.php";
 
 try {
-    $libroRepository = new LibroRepository($pdo);
-    $libroService = new LibroService($libroRepository);
+    $libroRepository = new LibroRepositoryImpl($pdo);
+    $libroService = new LibroServiceImpl($libroRepository);
+    $libroController = new LibroController($libroService);
 
-    $method = $_SERVER["REQUEST_METHOD"];
-
-    if ($method === "GET") {
-        $libros = $libroService->getAllLibros();
-        jsonResponse($libros, 200);
-        exit;
-    }
-
-    jsonResponse([
-        "error" => "Método no permitido"
-    ], 405);
+    $libroController->handleRequest();
 
 } catch (PDOException $e) {
     jsonResponse([

@@ -1,6 +1,7 @@
 <?php
+require_once __DIR__ . "/LibroRepositoryInterface.php";
 
-class LibroRepository {
+class LibroRepositoryImpl implements LibroRepositoryInterface {
     private PDO $pdo;
 
     public function __construct(PDO $pdo) {
