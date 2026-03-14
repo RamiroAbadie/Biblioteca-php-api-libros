@@ -1,4 +1,4 @@
-# 📚 books-query-php
+# 📚 Biblioteca-php-api-libros
  
 > Refactorización del módulo de consultas de libros: de Java Spring Boot a PHP puro (sin framework).
  
