@@ -42,7 +42,7 @@ CREATE TABLE editorial (
 
 CREATE TABLE ubicacion (
   id_ubicacion BIGINT AUTO_INCREMENT PRIMARY KEY,
-  descripcion VARCHAR(255)
+  referencia VARCHAR(255)
 );
 
 CREATE TABLE libro (
