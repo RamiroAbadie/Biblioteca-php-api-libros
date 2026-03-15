@@ -145,6 +145,34 @@ class LibroRepositoryImpl implements LibroRepositoryInterface {
         }
     }
 
+    public function deleteLibroAutores(int $idLibro): void {
+        $sql = "DELETE FROM libro_autor WHERE id_libro = ?";
+
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([$idLibro]);
+    }
+
+    public function deleteLibroGeneros(int $idLibro): void {
+        $sql = "DELETE FROM libro_genero WHERE id_libro = ?";
+
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([$idLibro]);
+    }
+
+    public function deleteLibroEditoriales(int $idLibro): void {
+        $sql = "DELETE FROM libro_editorial WHERE id_libro = ?";
+
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([$idLibro]);
+    }
+
+    public function deleteLibroById(int $idLibro): void {
+        $sql = "DELETE FROM libro WHERE id_libro = ?";
+
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([$idLibro]);
+    }
+
     public function beginTransaction(): void {
         $this->pdo->beginTransaction();
     }

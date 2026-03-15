@@ -113,4 +113,27 @@ class LibroServiceImpl implements LibroServiceInterface {
             throw new InvalidArgumentException("Debe incluir al menos una editorial");
         }
     }
+
+    public function deleteLibro(int $idLibro): void {
+        $libroExistente = $this->libroRepository->findBaseDataById($idLibro);
+
+        if ($libroExistente === null) {
+            throw new InvalidArgumentException("El libro que intenta eliminar no existe");
+        }
+
+        try {
+            $this->libroRepository->beginTransaction();
+
+            $this->libroRepository->deleteLibroAutores($idLibro);
+            $this->libroRepository->deleteLibroGeneros($idLibro);
+            $this->libroRepository->deleteLibroEditoriales($idLibro);
+            $this->libroRepository->deleteLibroById($idLibro);
+
+            $this->libroRepository->commit();
+
+        } catch (Exception $e) {
+            $this->libroRepository->rollBack();
+            throw $e;
+        }
+    }
 }

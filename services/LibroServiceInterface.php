@@ -7,4 +7,6 @@ interface LibroServiceInterface
     public function getLibroById(int $idLibro): ?array;
 
     public function createLibro(array $data): array;
+
+    public function deleteLibro(int $idLibro): void;
 }

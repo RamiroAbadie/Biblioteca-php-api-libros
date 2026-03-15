@@ -20,6 +20,14 @@ interface LibroRepositoryInterface
 
     public function insertLibroEditoriales(int $idLibro, array $editorialesIds): void;
 
+    public function deleteLibroAutores(int $idLibro): void;
+
+    public function deleteLibroGeneros(int $idLibro): void;
+
+    public function deleteLibroEditoriales(int $idLibro): void;
+
+    public function deleteLibroById(int $idLibro): void;
+
     public function beginTransaction(): void;
 
     public function commit(): void;

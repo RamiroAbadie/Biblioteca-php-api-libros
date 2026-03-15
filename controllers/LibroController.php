@@ -59,6 +59,31 @@ class LibroController {
             return;
         }
 
+        if ($method === "DELETE") {
+            if (!isset($_GET["id"])) {
+                jsonResponse([
+                    "error" => "Debe informar el id del libro a eliminar"
+                ], 400);
+                return;
+            }
+
+            $idLibro = (int) $_GET["id"];
+
+            if ($idLibro <= 0) {
+                jsonResponse([
+                    "error" => "El id debe ser un número mayor a 0"
+                ], 400);
+                return;
+            }
+
+            $this->libroService->deleteLibro($idLibro);
+
+            jsonResponse([
+                "mensaje" => "Libro eliminado correctamente"
+            ], 200);
+            return;
+        }
+
         jsonResponse([
             "error" => "Método no permitido"
         ], 405);
