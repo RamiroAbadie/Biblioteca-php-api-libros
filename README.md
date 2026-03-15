@@ -133,3 +133,9 @@ http://localhost/Biblioteca-php-api-libros/minifront/index.html
 ## 📌 Notas
 
 Este proyecto no busca ser un framework ni una API completa, sino un ejercicio práctico para explorar PHP a partir de un backend ya existente en otro stack.
+
+## Live Demo
+
+Mini demo deployed en AWS Lightsail:
+
+http://54.175.68.223/Biblioteca-php-api-libros/minifront/index.html
