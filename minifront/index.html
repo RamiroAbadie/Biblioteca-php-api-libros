@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Demo API Biblioteca</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<h1>Demo API Biblioteca (PHP)</h1>
+
+<div class="container">
+
+<div class="panel">
+<h2>Crear libro</h2>
+
+<input id="titulo" placeholder="Título">
+
+<input id="paginas" placeholder="Páginas">
+
+<input id="ubicacion" placeholder="Ubicación ID (110 a 115)">
+
+<input id="autores" placeholder="Autores IDs (1,2)">
+
+<input id="generos" placeholder="Géneros IDs (1,2)">
+
+<input id="editoriales" placeholder="Editoriales IDs (1,2)">
+
+<button onclick="crearLibro()">Crear</button>
+
+<p id="mensaje"></p>
+
+</div>
+
+
+<div class="panel">
+<h2>Libros</h2>
+
+<ul id="listaLibros"></ul>
+
+</div>
+
+
+<div class="panel">
+<h2>Detalle</h2>
+
+<pre id="detalle"></pre>
+
+</div>
+
+</div>
+
+<script src="app.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+body{
+font-family: Arial;
+margin:40px;
+}
+
+.container{
+display:flex;
+gap:40px;
+}
+
+.panel{
+border:1px solid #ccc;
+padding:20px;
+width:300px;
+}
+
+input{
+display:block;
+margin-bottom:10px;
+width:100%;
+}
+
+button{
+margin-top:10px;
+}

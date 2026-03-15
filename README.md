@@ -10,8 +10,18 @@ Experimento de fin de semana. Tengo una API REST construida con **Java + Spring 
  
 El objetivo no es reemplazar la API original, sino explorar PHP.
 
-### 📃 Nota
+### 📃 Notas
+#### 1
 El archivo `config/database.example.php` tiene los campos vacíos para completar.
 
 `config/database.php` está en el `.gitignore` para no exponer credenciales.
+
+#### 2
+Mini frontend demo usada para testear los enpoints de la PHP API.
+
+Permite:
+- Listar libros
+- Ver detalles de un libro especifico
+- Crear libros
+- Borrar libros
  
