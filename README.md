@@ -17,7 +17,7 @@ El archivo `config/database.example.php` tiene los campos vacíos para completar
 `config/database.php` está en el `.gitignore` para no exponer credenciales.
 
 #### 2
-Mini frontend demo usada para testear los enpoints de la PHP API.
+Desarrolle un mini frontend demo para mostrar el comportamiento especifico de la API de forma rapida y sencilla.
 
 Permite:
 - Listar libros
