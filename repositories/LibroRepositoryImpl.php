@@ -89,4 +89,73 @@ class LibroRepositoryImpl implements LibroRepositoryInterface {
 
         return $stmt->fetchAll(PDO::FETCH_COLUMN);
     }
+
+    public function createLibro(array $data): int {
+        $sql = "
+            INSERT INTO libro (titulo, id_ubicacion, paginas)
+            VALUES (?, ?, ?)
+        ";
+
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([
+            $data["titulo"],
+            $data["ubicacionId"],
+            $data["paginas"]
+        ]);
+
+        return (int) $this->pdo->lastInsertId();
+    }
+
+    public function insertLibroAutores(int $idLibro, array $autoresIds): void {
+        $sql = "
+            INSERT INTO libro_autor (id_libro, id_autor)
+            VALUES (?, ?)
+        ";
+
+        $stmt = $this->pdo->prepare($sql);
+
+        foreach ($autoresIds as $idAutor) {
+            $stmt->execute([$idLibro, $idAutor]);
+        }
+    }
+
+    public function insertLibroGeneros(int $idLibro, array $generosIds): void {
+        $sql = "
+            INSERT INTO libro_genero (id_libro, id_genero)
+            VALUES (?, ?)
+        ";
+
+        $stmt = $this->pdo->prepare($sql);
+
+        foreach ($generosIds as $idGenero) {
+            $stmt->execute([$idLibro, $idGenero]);
+        }
+    }
+
+    public function insertLibroEditoriales(int $idLibro, array $editorialesIds): void {
+        $sql = "
+            INSERT INTO libro_editorial (id_libro, id_editorial)
+            VALUES (?, ?)
+        ";
+
+        $stmt = $this->pdo->prepare($sql);
+
+        foreach ($editorialesIds as $idEditorial) {
+            $stmt->execute([$idLibro, $idEditorial]);
+        }
+    }
+
+    public function beginTransaction(): void {
+        $this->pdo->beginTransaction();
+    }
+
+    public function commit(): void {
+        $this->pdo->commit();
+    }
+
+    public function rollBack(): void {
+        if ($this->pdo->inTransaction()) {
+            $this->pdo->rollBack();
+        }
+    }
 }

@@ -42,6 +42,23 @@ class LibroController {
             return;
         }
 
+        if ($method === "POST") {
+            $rawBody = file_get_contents("php://input");
+            $data = json_decode($rawBody, true);
+
+            if (!is_array($data)) {
+                jsonResponse([
+                    "error" => "El body debe ser un JSON válido"
+                ], 400);
+                return;
+            }
+
+            $libroCreado = $this->libroService->createLibro($data);
+
+            jsonResponse($libroCreado, 201);
+            return;
+        }
+
         jsonResponse([
             "error" => "Método no permitido"
         ], 405);

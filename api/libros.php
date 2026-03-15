@@ -18,6 +18,11 @@ try {
 
     $libroController->handleRequest();
 
+} catch (InvalidArgumentException $e) {
+    jsonResponse([
+        "error" => $e->getMessage()
+    ], 400);
+
 } catch (PDOException $e) {
     jsonResponse([
         "error" => "Error de base de datos",
